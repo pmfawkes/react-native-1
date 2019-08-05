@@ -49,6 +49,10 @@ class RN_EXPORT ModuleRegistry {
   MethodCallResult callSerializableNativeHook(unsigned int moduleId, unsigned int methodId, folly::dynamic&& args);
 
  private:
+  // Hotfix to prevent launch crash 
+  // from https://github.com/f111fei/react-native-unity-view/issues/79#issuecomment-465110101
+  std::vector<std::string> moduleNamesVec_;
+
   // This is always populated
   std::vector<std::unique_ptr<NativeModule>> modules_;
 

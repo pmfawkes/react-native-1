@@ -83,7 +83,9 @@ folly::Optional<ModuleConfig> ModuleRegistry::getConfig(const std::string& name)
 
   // Initialize modulesByName_
   if (modulesByName_.empty() && !modules_.empty()) {
-    moduleNames();
+    // Hotfix to prevent launch crash 
+    // from https://github.com/f111fei/react-native-unity-view/issues/79#issuecomment-465110101
+    moduleNamesVec_ = moduleNames();
   }
 
   auto it = modulesByName_.find(name);
